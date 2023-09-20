@@ -1,0 +1,221 @@
+/* Estilos generales */
+body{
+  background-color: #f6f7f9;;
+  font-family: sans-serif, Arial, Helvetica, sans-serif;
+  text-align: center;
+  padding: 0px;
+  margin: 0px;
+}
+
+.layout{
+  width: 100%;
+  min-height: 100vh;
+  height: auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr; /* Las tres primeras columnas ocupan 75%, la última 25% */
+  grid-template-rows: auto auto auto auto; /* Definición de filas */
+  grid-template-areas: 
+  "header header header header"
+  "nav nav nav nav"
+  "content content content lateral"
+  "footer footer footer footer";
+}
+
+/* Estilos cabecera */
+.header{
+  grid-area: header ;
+  background-color: whitesmoke;
+  text-align: left;
+  font-style: italic;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.logo{
+  background: linear-gradient(90deg, #03228f 10%, #0e73e4 100%);
+  width: 40px;
+  height: 40px;
+  border-radius: 300px;
+}
+
+.play{
+  width: 0px;
+  height: 0px;
+  border-left: 12px solid white;
+  border-top: 6px solid transparent;
+  border-bottom: 6px solid transparent;
+  margin-top: 15px;
+  margin-left: 16px;
+
+}
+
+/* Estilos de la barra de navegación */
+.nav{
+  grid-area: nav;
+  background: linear-gradient(90deg, #03228f 10%, #0e73e4 100%);
+}
+
+.nav > ul{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  list-style: none;
+}
+
+.nav li{
+  padding: 10px;
+}
+
+.nav a{
+  display: block;
+  color: whitesmoke;
+  text-decoration: none;
+  font-size: 18px;
+  margin-left: 30px;
+  margin-right: 30px;
+  font-weight: lighter;
+  transition: al 300ms;
+}
+
+.nav a:hover{
+  transform: scale(1.1, 1.1);
+}
+
+/*Estilos del contenido principal */
+.content{
+  grid-area: content;
+
+  /* Las siguientes líneas se pueden quitar y se va a ver bonito igualmente */
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: flex-start;
+  align-items: flex-start;
+}
+
+.peli-item{
+  flex-grow: 1;
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 0px 0px 6px #ddd;
+  margin: 20px;
+  padding: 60px 25px 60px 25px;
+}
+
+.peli-item .edit{
+  margin-right: 7px;
+}
+
+button,
+input[type="submit"],
+input[type="button"]{
+  width: 100px;
+  background-color: #0b70e1;
+  color: whitesmoke;
+  border: 0;
+  outline: none;
+  padding: 15px;
+  border-radius: 3px;
+  margin-top: 15px;
+  text-transform: capitalize;
+  font-size: 16px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 300ms;
+}
+
+.edit:hover{
+  background-color: #e77b00;
+}
+
+.delete:hover{
+  background-color: #9b0202;
+}
+
+/* Estilos de la barra lateral */
+.lateral{
+  grid-area: lateral;
+  background: #f6f7f9;
+  border-left: 1px solid #ddd;
+  padding: 20px;
+  flex: 0 0 33%; /* La última columna ocupa un 33% del ancho */
+}
+
+.lateral > div{
+  box-sizing: border-box;
+  padding: 20px;
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 0px 0px 6px #ddd;
+}
+
+.search{
+  margin: 0 0 20px 0;
+}
+
+.add{
+  margin-top: 20px;
+}
+
+.lateral input[type="text"],
+.lateral textarea{
+  display: block;
+  margin: 0 auto;
+  margin-top: 15px;
+  padding: 12px;
+  border-radius: 5px;
+  background: #f6f7f9;
+  color: #454545;
+  width: 80%;
+  opacity: 4;
+  outline: 0;
+  border-color: transparent;
+}
+
+/* Estilos del pie de página */
+.footer{
+  grid-area: footer;
+  background: #d1defa;
+  color: #454545;
+  border: 1px solid white;
+  text-align: left;
+  line-height: 68px;
+  padding-left: 25px;
+}
+
+.footer a{
+  color: #0b468a;
+  text-decoration: none;
+}
+
+@media (max-width: 900px){
+  .content{
+      flex-flow: column wrap;
+      justify-content: center;
+      align-items: center;
+  }
+  .peli-item{
+      width: 80%;
+  }
+}
+
+/* Formulario de edición de peliculas */
+.editar input[type="text"],
+.editar textarea {
+  display: block;
+  margin: 0px auto;
+  margin-top: 15px;
+  padding: 15px;
+  border-radius: 5px;
+  background: #f6f7f9;
+  color: #454545;
+  width: 80%;
+  opacity: 4;
+  outline: 0;
+  border-color: transparent;
+}
+
+.no-encontrado{
+  color: #9b0202;
+}
