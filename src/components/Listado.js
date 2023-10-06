@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { Editar } from './Editar';
 
-export const Listado = ({listadoState, setListadoState}) => {
+export const Listado = ({ listadoState, setListadoState }) => {
 
     //Aqui había un estado de listado de peliculas que se ha movido al componente App.js 
     //De ahi hasta aquí se pasa el estado como una props
@@ -16,14 +16,14 @@ export const Listado = ({listadoState, setListadoState}) => {
 
     const conseguirPeliculas = () => {
         let peliculas = JSON.parse(localStorage.getItem("pelis"));
-        
+
         //Metemos las películas que hemos sacado del localStorage al estado listadoState mediante la funcion correspondiente:
         setListadoState(peliculas);
 
         return peliculas;
     }
 
-    const borrarPeli = (id) =>{
+    const borrarPeli = (id) => {
 
         //Conseguir el listadoState de peliculas
         let pelis_almacenadas = conseguirPeliculas();
@@ -38,31 +38,32 @@ export const Listado = ({listadoState, setListadoState}) => {
         localStorage.setItem("pelis", JSON.stringify(nuevo_array_pelis));
     }
 
-  return (
-    <>
-        {listadoState != null ?
-        
-            listadoState.map(peli => {
-                return(
-                    <article key={peli.id} className="peli-item">
-                        <h3 className="title">{peli.titulo}</h3>
-                        <p className="description">{peli.descripcion}</p>
-                        <button className="edit" onClick={ () => setEditar(peli.id)}>Editar</button>
-                        <button onClick={ () => borrarPeli(peli.id)} className="delete">Eliminar</button>
+    return (
+        <>
+            {listadoState != null ?
 
-                        {/* Aparece formulario de editar */}
-                        {
-                            editar === peli.id && (<Editar peli={peli} 
-                                                        conseguirPeliculas={conseguirPeliculas}
-                                                        setEditar={setEditar}
-                                                        setListadoState={setListadoState}/>)
-                        }
-                    </article>
-                );
-            })
-            :
-            <div className='mensaje'><p></p></div>        
-        }   
-    </>
-  )
+                listadoState.map(peli => {
+                    return (
+                        <article key={peli.id} className="peli-item">
+                            <h3 className="title">{peli.titulo}</h3>
+                            <p className="description">{peli.descripcion}</p>
+                            <div className='botones'>
+                                <button className="edit" onClick={() => setEditar(peli.id)}>Editar</button>
+                                <button onClick={() => borrarPeli(peli.id)} className="delete">Eliminar</button>
+                            </div>
+                            {/* Aparece formulario de editar */}
+                            {
+                                editar === peli.id && (<Editar peli={peli}
+                                    conseguirPeliculas={conseguirPeliculas}
+                                    setEditar={setEditar}
+                                    setListadoState={setListadoState} />)
+                            }
+                        </article>
+                    );
+                })
+                :
+                <div className='mensaje'><p></p></div>
+            }
+        </>
+    )
 }

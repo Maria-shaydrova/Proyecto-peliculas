@@ -9,11 +9,12 @@ body{
 
 .layout{
   width: 100%;
+  max-width: 100vw;
   min-height: 100vh;
   height: auto;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr; /* Las tres primeras columnas ocupan 75%, la última 25% */
-  grid-template-rows: auto auto auto auto; /* Definición de filas */
+  grid-template-rows: 10vh 10vh auto 10vh; /* Definición de filas */
   grid-template-areas: 
   "header header header header"
   "nav nav nav nav"
@@ -55,17 +56,17 @@ body{
 .nav{
   grid-area: nav;
   background: linear-gradient(90deg, #03228f 10%, #0e73e4 100%);
+  display: flex;
+  justify-content: content;
 }
 
 .nav > ul{
   display: flex;
+  width: 100vw;
   justify-content: center;
   align-items: center;
   list-style: none;
-}
-
-.nav li{
-  padding: 10px;
+  padding: 0;
 }
 
 .nav a{
@@ -73,8 +74,8 @@ body{
   color: whitesmoke;
   text-decoration: none;
   font-size: 18px;
-  margin-left: 30px;
-  margin-right: 30px;
+  margin-left: 25px;
+  margin-right: 25px;
   font-weight: lighter;
   transition: al 300ms;
 }
@@ -86,8 +87,6 @@ body{
 /*Estilos del contenido principal */
 .content{
   grid-area: content;
-
-  /* Las siguientes líneas se pueden quitar y se va a ver bonito igualmente */
   display: flex;
   flex-flow: row wrap;
   justify-content: flex-start;
@@ -100,12 +99,21 @@ body{
   border-radius: 10px;
   box-shadow: 0px 0px 6px #ddd;
   margin: 20px;
-  padding: 60px 25px 60px 25px;
+  padding: 30px;
+  width: -moz-available;
+  width: -webkit-fill-available;
 }
 
-.peli-item .edit{
-  margin-right: 7px;
+.botones{
+  display: inline;
 }
+
+.peli-item .edit,
+.peli-item .delete {
+  margin-right: 4px;
+  margin-left: 4px;
+}
+
 
 button,
 input[type="submit"],
@@ -179,7 +187,6 @@ input[type="button"]{
   background: #d1defa;
   color: #454545;
   border: 1px solid white;
-  text-align: left;
   line-height: 68px;
   padding-left: 25px;
 }
@@ -189,16 +196,7 @@ input[type="button"]{
   text-decoration: none;
 }
 
-@media (max-width: 900px){
-  .content{
-      flex-flow: column wrap;
-      justify-content: center;
-      align-items: center;
-  }
-  .peli-item{
-      width: 80%;
-  }
-}
+
 
 /* Formulario de edición de peliculas */
 .editar input[type="text"],
@@ -218,4 +216,46 @@ input[type="button"]{
 
 .no-encontrado{
   color: #9b0202;
+}
+
+
+@media (max-width: 760px) {
+  .layout {
+    grid-template-columns: 100%; 
+    grid-template-rows: 10vh 10vh max-content auto 10vh; /* Añade una fila para lateral */
+    grid-template-areas:
+      "header"
+      "nav"
+      "lateral"
+      "content"
+      "footer";
+  }
+  .lateral > div{
+    height: auto;
+  }
+}
+
+@media (max-width: 900px){
+  .content{
+      flex-flow: column wrap;
+      justify-content: center;
+      align-items: center;
+  }
+  .peli-item{
+      width: -moz-available;
+      width: -webkit-fill-available;
+  }
+
+  .peli-item {
+    width: -webkit-fill-available;
+    width: -moz-available;
+    height: max-content;
+    display: flex;
+    flex-direction: column;
+    height: min-content;
+    justify-content: center;
+    align-content: center;
+    justify-content: start;
+  }
+    
 }

@@ -48,8 +48,7 @@ function App() {
 
         {/* Pie de pagina */}
         <footer className="footer">
-            Master en React: <a href="https://www.udemy.com/course/master-en-react-aprender-reactjs-hooks-mern-nodejs-jwt/" target="_blank">Aprender ReactJS, Hooks, MERN, NodeJS, JWT+</a>
-            (Realizado por María Shaydrova)
+            Proyecto Películas - María Shaydrova
         </footer>
 
     </div>
